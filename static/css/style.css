@@ -668,6 +668,127 @@ body {
     gap: 7px;
 }
 
+/* =========================
+   Enhanced Model Details
+========================= */
+
+.detail-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+
+/* =========================
+   Model Detail Branding
+========================= */
+
+.detail-heading {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+
+.detail-logos {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.detail-company-logo,
+.detail-model-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+
+.detail-company-logo {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+.detail-company-logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 9px;
+}
+
+
+.detail-model-icon {
+    background: #eef2ff;
+
+    color: var(--primary-dark);
+
+    border: 1px solid #e0e7ff;
+}
+
+
+.detail-description {
+    max-width: 900px;
+
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.detail-description {
+    max-width: 900px;
+
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+#detail-supported-parameters {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+
+#detail-supported-parameters span {
+    background: #f3f4f6;
+
+    color: #374151;
+
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    font-size: 10px;
+}
 
 /* =========================
    Errors
