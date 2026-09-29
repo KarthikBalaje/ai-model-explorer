@@ -26,8 +26,18 @@ spec:
     spec:
       containers:
         - name: ai-model-explorer
-          image: host.minikube.internal:5001/ai-model-explorer:6
+          image: host.minikube.internal:5001/ai-model-explorer:8
           imagePullPolicy: Always
+
+          env:
+            - name: OPENROUTER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openrouter-secret
+                  key: OPENROUTER_API_KEY
+
+            - name: OPENROUTER_BASE_URL
+              value: https://openrouter.ai/api/v1
 
           ports:
             - containerPort: 5000
