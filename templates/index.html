@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Explorer</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">AI</div>
+
+            <div>
+                <h1>Model Explorer</h1>
+                <p>AI Model Intelligence</p>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>Companies</h3>
+
+            <div id="company-list">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>Model Type</h3>
+
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    class="type-filter"
+                    value="LLM"
+                    checked
+                >
+                <span>LLM</span>
+            </label>
+
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    class="type-filter"
+                    value="SLM"
+                >
+                <span>SLM</span>
+            </label>
+
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    class="type-filter"
+                    value="Multimodal"
+                >
+                <span>Multimodal</span>
+            </label>
+
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    class="type-filter"
+                    value="Embedding"
+                >
+                <span>Embedding</span>
+            </label>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">AI / GEN AI</p>
+                <h2 id="page-title">AI Model Explorer</h2>
+                <p class="subtitle">
+                    Explore models, capabilities, context windows and pricing.
+                </p>
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                API Connected
+            </div>
+
+        </header>
+
+
+        <!-- Search -->
+        <section class="search-section">
+
+            <div class="search-box">
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Search models..."
+                >
+            </div>
+
+        </section>
+
+
+        <!-- Models -->
+        <section>
+
+            <div class="section-header">
+                <div>
+                    <h3 id="models-title">Select a company</h3>
+                    <p id="models-subtitle">
+                        Choose a company from the sidebar.
+                    </p>
+                </div>
+
+                <span id="model-count" class="model-count">
+                    0 models
+                </span>
+            </div>
+
+            <div id="model-list" class="model-grid">
+
+                <div class="empty-state">
+                    <div class="empty-icon">◈</div>
+                    <h3>Select a company</h3>
+                    <p>
+                        Choose a company from the left panel
+                        to explore its AI models.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Model Details -->
+        <section
+            id="model-details"
+            class="details-section hidden"
+        >
+
+            <div class="section-header">
+                <div>
+                    <p class="eyebrow">MODEL DETAILS</p>
+                    <h3 id="detail-model-name">Model</h3>
+                </div>
+            </div>
+
+            <div class="details-grid">
+
+                <div class="detail-card">
+                    <span>Company</span>
+                    <strong id="detail-company">-</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Model ID</span>
+                    <strong id="detail-model-id">-</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Model Type</span>
+                    <strong id="detail-type">-</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Context Length</span>
+                    <strong id="detail-context">-</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Architecture</span>
+                    <strong id="detail-architecture">-</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Input Pricing</span>
+                    <strong id="detail-input-price">-</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Output Pricing</span>
+                    <strong id="detail-output-price">-</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Modalities</span>
+                    <strong id="detail-modalities">-</strong>
+                </div>
+
+            </div>
+
+            <div class="capabilities-card">
+
+                <h4>Capabilities</h4>
+
+                <div id="detail-capabilities">
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>
