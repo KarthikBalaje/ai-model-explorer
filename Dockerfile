@@ -21,6 +21,9 @@ ENV PYTHONUNBUFFERED=1
 
 COPY --from=builder /install /usr/local
 
+RUN python -m pip uninstall -y setuptools wheel \
+    && rm -rf /root/.cache/pip
+
 COPY app.py .
 COPY templates ./templates
 COPY static ./static
