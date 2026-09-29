@@ -112,6 +112,7 @@ def format_date(timestamp):
     except (TypeError, ValueError, OverflowError):
         return "N/A"
 
+
 def infer_model_type(model):
     """Infer model type from OpenRouter model metadata."""
 
@@ -121,8 +122,7 @@ def infer_model_type(model):
     output_modalities = architecture.get("output_modalities") or []
 
     modalities = {
-        str(modality).lower()
-        for modality in input_modalities + output_modalities
+        str(modality).lower() for modality in input_modalities + output_modalities
     }
 
     model_id = model.get("id", "").lower()
@@ -131,10 +131,7 @@ def infer_model_type(model):
     combined_name = f"{model_id} {name}"
 
     # Embedding models
-    if (
-        "embedding" in combined_name
-        or "embed" in combined_name
-    ):
+    if "embedding" in combined_name or "embed" in combined_name:
         return "Embedding"
 
     # Explicit multimodal capability
@@ -171,6 +168,7 @@ def infer_model_type(model):
 
     # Default text-generation model
     return "LLM"
+
 
 def build_capabilities(model):
     """Build user-friendly capabilities from OpenRouter metadata."""
@@ -315,9 +313,7 @@ def get_companies():
         for company, config in PROVIDER_CONFIG.items():
 
             company_models = [
-                model
-                for model in models
-                if detect_provider(model["id"]) == company
+                model for model in models if detect_provider(model["id"]) == company
             ]
 
             if company_models:
@@ -333,12 +329,16 @@ def get_companies():
 
     except requests.RequestException as error:
 
-        return jsonify(
-            {
-                "error": "Unable to fetch model catalog from OpenRouter",
-                "details": str(error),
-            }
-        ), 502
+        return (
+            jsonify(
+                {
+                    "error": "Unable to fetch model catalog from OpenRouter",
+                    "details": str(error),
+                }
+            ),
+            502,
+        )
+
 
 @app.route("/api/companies/<company>/models")
 def get_company_models(company):
@@ -351,9 +351,7 @@ def get_company_models(company):
         models = get_normalized_models()
 
         company_models = [
-            model
-            for model in models
-            if detect_provider(model["id"]) == company
+            model for model in models if detect_provider(model["id"]) == company
         ]
 
         return jsonify(
@@ -366,12 +364,15 @@ def get_company_models(company):
 
     except requests.RequestException as error:
 
-        return jsonify(
-            {
-                "error": "Unable to fetch models from OpenRouter",
-                "details": str(error),
-            }
-        ), 502
+        return (
+            jsonify(
+                {
+                    "error": "Unable to fetch models from OpenRouter",
+                    "details": str(error),
+                }
+            ),
+            502,
+        )
 
 
 @app.route("/api/models/<path:model_id>")
@@ -399,12 +400,15 @@ def get_model(model_id):
 
     except requests.RequestException as error:
 
-        return jsonify(
-            {
-                "error": "Unable to fetch model from OpenRouter",
-                "details": str(error),
-            }
-        ), 502
+        return (
+            jsonify(
+                {
+                    "error": "Unable to fetch model from OpenRouter",
+                    "details": str(error),
+                }
+            ),
+            502,
+        )
 
 
 if __name__ == "__main__":
