@@ -4,3 +4,6 @@ __pycache__/
 .pytest_cache/
 .vscode/
 .env
+trivy-report.json
+trivy-report.sarif
+trivy-gate.txt
