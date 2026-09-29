@@ -179,25 +179,25 @@ is **not hard-coded in the application source code**.
 
 The application provides the following endpoints.
 
-  -----------------------------------------------------------------------------------
-  Method                  Endpoint                            Purpose
-  ----------------------- ----------------------------------- -----------------------
-  GET                     `/`                                 Serves the AI Model
-                                                              Explorer UI
+  -----------------------------------------------------------------------------
+  Method              Endpoint                            Purpose
+  ------------------- ----------------------------------- ---------------------
+  GET                 `/`                                 Serves the AI Model
+                                                          Explorer UI
 
-  GET                     `/health`                           Application health
-                                                              check
+  GET                 `/health`                           Application health
+                                                          check
 
-  GET                     `/api/companies`                    Returns supported
-                                                              companies/providers
+  GET                 `/api/companies`                    Returns supported
+                                                          companies/providers
 
-  GET                     `/api/companies/<company>/models`   Returns models for a
-                                                              selected company
+  GET                 `/api/companies/<company>/models`   Returns models for a
+                                                          selected company
 
-  GET                     `/api/models/<path:model_id>`       Returns detailed
-                                                              information for a
-                                                              selected model
-  -----------------------------------------------------------------------------------
+  GET                 `/api/models/<path:model_id>`       Returns detailed
+                                                          information for a
+                                                          selected model
+  -----------------------------------------------------------------------------
 
 The `/health` endpoint is also used by Kubernetes liveness and readiness
 probes.
@@ -410,7 +410,112 @@ curl.exe http://127.0.0.1:5000/api/companies
 
 ------------------------------------------------------------------------
 
-# 12. Code Quality Checks
+# 12. Localhost Application Output
+
+After starting the Flask application locally, open:
+
+``` text
+http://127.0.0.1:5000
+```
+
+or:
+
+``` text
+http://localhost:5000
+```
+
+The browser should display the **AI Model Explorer** UI.
+
+<p align="center">
+  <img src="docs/screenshots/localhost-application-output.png"
+       alt="AI Model Explorer running locally at http://127.0.0.1:5000"
+       width="100%">
+</p>
+
+### What to verify in the localhost application
+
+The local application should demonstrate:
+
+1.  The **AI Model Explorer** home page loads successfully.
+2.  The Companies panel is displayed on the left.
+3.  Selecting a company loads its available models dynamically.
+4.  The **Model Type** filter is derived from the selected company's
+    available models.
+5.  Selecting a model displays detailed metadata including:
+    -   Model name and model ID
+    -   Model type
+    -   Launch date, when provided by OpenRouter
+    -   Context length
+    -   Architecture
+    -   Input and output pricing
+    -   Input and output modalities
+    -   Capabilities
+    -   Supported parameters
+6.  The application status indicates that it is connected to OpenRouter
+    when the API key and network connection are available.
+
+### Localhost startup procedure
+
+From the project root:
+
+``` powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Set the OpenRouter environment variables:
+
+``` powershell
+$env:OPENROUTER_API_KEY="YOUR_OPENROUTER_API_KEY"
+$env:OPENROUTER_BASE_URL="https://openrouter.ai/api/v1"
+```
+
+Start Flask:
+
+``` powershell
+python app.py
+```
+
+Open the application:
+
+``` text
+http://127.0.0.1:5000
+```
+
+### Optional API checks
+
+Health endpoint:
+
+``` powershell
+curl.exe http://127.0.0.1:5000/health
+```
+
+Companies endpoint:
+
+``` powershell
+curl.exe http://127.0.0.1:5000/api/companies
+```
+
+A successful local setup should return the application health response
+and the dynamically discovered company/provider data.
+
+### Important distinction
+
+The localhost URL demonstrates the **local Flask application**. It is
+separate from the Kubernetes/Minikube deployment.
+
+For the Kubernetes deployment, use:
+
+``` powershell
+kubectl get deployment ai-model-explorer
+kubectl get pods -l app=ai-model-explorer
+kubectl get service ai-model-explorer
+minikube service ai-model-explorer --url
+```
+
+The Minikube service command provides the URL used to access the
+Kubernetes-hosted application.
+
+# 13. Code Quality Checks
 
 The project uses Black and Flake8.
 
@@ -467,7 +572,7 @@ The seven tests cover:
 
 ------------------------------------------------------------------------
 
-# 13. Git Repository and GitFlow
+# 14. Git Repository and GitFlow
 
 The project uses Git and GitHub.
 
@@ -518,7 +623,7 @@ git status
 
 ------------------------------------------------------------------------
 
-# 14. Docker
+# 15. Docker
 
 The project uses a multi-stage Dockerfile.
 
@@ -561,7 +666,7 @@ CMD ["python", "app.py"]
 
 ------------------------------------------------------------------------
 
-# 15. Docker Build
+# 16. Docker Build
 
 Build the image:
 
@@ -591,7 +696,7 @@ which is below the case-study target of 150 MB.
 
 ------------------------------------------------------------------------
 
-# 16. Local Docker Registry
+# 17. Local Docker Registry
 
 A local Docker Registry was configured:
 
@@ -626,7 +731,7 @@ The validated registry contained:
 
 ------------------------------------------------------------------------
 
-# 17. Trivy Security Scanning
+# 18. Trivy Security Scanning
 
 Trivy was used as a CI/CD security gate.
 
@@ -658,7 +763,7 @@ The pipeline only pushes the Docker image after the Trivy gate succeeds.
 
 ------------------------------------------------------------------------
 
-# 18. Jenkins CI/CD
+# 19. Jenkins CI/CD
 
 Jenkins version:
 
@@ -734,7 +839,7 @@ localhost:5001/ai-model-explorer:8
 
 ------------------------------------------------------------------------
 
-# 19. Kubernetes / Minikube
+# 20. Kubernetes / Minikube
 
 Minikube:
 
@@ -769,7 +874,7 @@ k8s/service.yaml
 
 ------------------------------------------------------------------------
 
-# 20. Kubernetes Deployment
+# 21. Kubernetes Deployment
 
 Deployment:
 
@@ -822,7 +927,7 @@ The deployment defines CPU and memory requests/limits.
 
 ------------------------------------------------------------------------
 
-# 21. Kubernetes Service
+# 22. Kubernetes Service
 
 Service:
 
@@ -865,7 +970,7 @@ service URL.
 
 ------------------------------------------------------------------------
 
-# 22. Kubernetes OpenRouter Secret
+# 23. Kubernetes OpenRouter Secret
 
 The OpenRouter API key is provided to Kubernetes using:
 
@@ -907,7 +1012,7 @@ kubectl get secret openrouter-secret
 
 ------------------------------------------------------------------------
 
-# 23. Kubernetes Deployment Commands
+# 24. Kubernetes Deployment Commands
 
 Apply the deployment:
 
@@ -960,7 +1065,7 @@ host.minikube.internal:5001/ai-model-explorer:8
 
 ------------------------------------------------------------------------
 
-# 24. Minikube Registry Configuration
+# 25. Minikube Registry Configuration
 
 Because the Docker Registry is running on the Windows host, Minikube was
 configured to allow the local registry:
@@ -983,7 +1088,7 @@ published application image.
 
 ------------------------------------------------------------------------
 
-# 25. Final Validation Evidence
+# 26. Final Validation Evidence
 
 The project was validated through the following stages.
 
@@ -1045,7 +1150,7 @@ OpenRouter model data successfully displayed
 
 ------------------------------------------------------------------------
 
-# 26. Troubleshooting Notes
+# 27. Troubleshooting Notes
 
 ## Flake8 line length
 
@@ -1109,7 +1214,7 @@ may need to remain open while the service tunnel is active.
 
 ------------------------------------------------------------------------
 
-# 27. Case Study 1 Evidence
+# 28. Case Study 1 Evidence
 
 The implementation has evidence covering:
 
@@ -1135,7 +1240,7 @@ The evidence report contains screenshots for:
 
 ------------------------------------------------------------------------
 
-# 28. Quick Start
+# 29. Quick Start
 
 For a fresh local setup:
 
@@ -1166,7 +1271,7 @@ http://127.0.0.1:5000
 
 ------------------------------------------------------------------------
 
-# 29. Project Outcome
+# 30. Project Outcome
 
 The final implementation demonstrates a complete
 development-to-deployment workflow:
