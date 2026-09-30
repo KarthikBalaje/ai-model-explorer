@@ -36,45 +36,14 @@
         </div>
 
         <div class="sidebar-section">
-            <h3>Model Type</h3>
+        <h3>Model Type</h3>
 
-            <label class="filter-option">
-                <input
-                    type="checkbox"
-                    class="type-filter"
-                    value="LLM"
-                    checked
-                >
-                <span>LLM</span>
-            </label>
-
-            <label class="filter-option">
-                <input
-                    type="checkbox"
-                    class="type-filter"
-                    value="SLM"
-                >
-                <span>SLM</span>
-            </label>
-
-            <label class="filter-option">
-                <input
-                    type="checkbox"
-                    class="type-filter"
-                    value="Multimodal"
-                >
-                <span>Multimodal</span>
-            </label>
-
-            <label class="filter-option">
-                <input
-                    type="checkbox"
-                    class="type-filter"
-                    value="Embedding"
-                >
-                <span>Embedding</span>
-            </label>
+        <div id="model-type-list">
+            <div class="loading">
+                Loading...
+            </div>
         </div>
+    </div>
 
     </aside>
 
@@ -149,72 +118,143 @@
 
 
         <!-- Model Details -->
-        <section
-            id="model-details"
-            class="details-section hidden"
-        >
+<section
+    id="model-details"
+    class="details-section hidden"
+>
 
-            <div class="section-header">
-                <div>
-                    <p class="eyebrow">MODEL DETAILS</p>
-                    <h3 id="detail-model-name">Model</h3>
-                </div>
+    <div class="section-header">
+
+        <div class="detail-heading">
+
+    <div class="detail-logos">
+
+        <div
+            id="detail-company-logo"
+            class="detail-company-logo"
+            >
+                AI
             </div>
 
-            <div class="details-grid">
-
-                <div class="detail-card">
-                    <span>Company</span>
-                    <strong id="detail-company">-</strong>
-                </div>
-
-                <div class="detail-card">
-                    <span>Model ID</span>
-                    <strong id="detail-model-id">-</strong>
-                </div>
-
-                <div class="detail-card">
-                    <span>Model Type</span>
-                    <strong id="detail-type">-</strong>
-                </div>
-
-                <div class="detail-card">
-                    <span>Context Length</span>
-                    <strong id="detail-context">-</strong>
-                </div>
-
-                <div class="detail-card">
-                    <span>Architecture</span>
-                    <strong id="detail-architecture">-</strong>
-                </div>
-
-                <div class="detail-card">
-                    <span>Input Pricing</span>
-                    <strong id="detail-input-price">-</strong>
-                </div>
-
-                <div class="detail-card">
-                    <span>Output Pricing</span>
-                    <strong id="detail-output-price">-</strong>
-                </div>
-
-                <div class="detail-card">
-                    <span>Modalities</span>
-                    <strong id="detail-modalities">-</strong>
-                </div>
-
+            <div
+                id="detail-model-icon"
+                class="detail-model-icon"
+            >
+                AI
             </div>
 
-            <div class="capabilities-card">
+        </div>
 
-                <h4>Capabilities</h4>
+        <div>
+                <p class="eyebrow">MODEL DETAILS</p>
 
-                <div id="detail-capabilities">
-                </div>
+                <h3 id="detail-model-name">
+                    Model
+                </h3>
 
+                <p
+                    id="detail-description"
+                    class="detail-description"
+                >
+                    Select a model to view its details.
+                </p>
             </div>
 
-        </section>
+        </div>
+
+    </div>
+
+
+    <div class="details-grid">
+
+        <div class="detail-card">
+            <span>Company</span>
+            <strong id="detail-company">-</strong>
+        </div>
+
+
+        <div class="detail-card">
+            <span>Model ID</span>
+            <strong id="detail-model-id">-</strong>
+        </div>
+
+
+        <div class="detail-card">
+            <span>Model Type</span>
+            <strong id="detail-type">-</strong>
+        </div>
+
+
+        <div class="detail-card">
+            <span>Launch Date</span>
+            <strong id="detail-launch-date">-</strong>
+        </div>
+
+
+        <div class="detail-card">
+            <span>Context Length</span>
+            <strong id="detail-context">-</strong>
+        </div>
+
+
+        <div class="detail-card">
+            <span>Architecture</span>
+            <strong id="detail-architecture">-</strong>
+        </div>
+
+
+        <div class="detail-card">
+            <span>Input Pricing</span>
+            <strong id="detail-input-price">-</strong>
+        </div>
+
+
+        <div class="detail-card">
+            <span>Output Pricing</span>
+            <strong id="detail-output-price">-</strong>
+        </div>
+
+
+        <div class="detail-card">
+            <span>Input Modalities</span>
+            <strong id="detail-input-modalities">-</strong>
+        </div>
+
+
+        <div class="detail-card">
+            <span>Output Modalities</span>
+            <strong id="detail-output-modalities">-</strong>
+        </div>
+
+
+        <div class="detail-card">
+            <span>Modalities</span>
+            <strong id="detail-modalities">-</strong>
+        </div>
+
+    </div>
+
+
+    <div class="capabilities-card">
+
+        <h4>Capabilities</h4>
+
+        <div id="detail-capabilities">
+        </div>
+
+    </div>
+
+
+    <div class="capabilities-card">
+
+        <h4>Supported Parameters</h4>
+
+        <div id="detail-supported-parameters">
+        </div>
+
+    </div>
+
+    </section>
 
     </main>
 
